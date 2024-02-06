@@ -1,4 +1,5 @@
 import './App.css'
+import ListItem from './components/Container'
 
 const data = [
   {
@@ -7,6 +8,7 @@ const data = [
     description: 'The best tiramisu in town',
     image: 'https://picsum.photos/200/300/?random',
     price: '$4.50',
+    alt: 'Tiramisu',
   },
   {
     id: '2',
@@ -14,6 +16,7 @@ const data = [
     description: 'The best popcorn in town',
     image: 'https://picsum.photos/200/300/?random',
     price: '$2.60',
+    alt: 'Popcorn',
   },
   {
     id: '3',
@@ -21,32 +24,36 @@ const data = [
     description: 'The best ceviche in town',
     image: 'https://picsum.photos/200/300/?random',
     price: '$8.00',
+    alt: 'Ceviche',
   },
 ]
 
 function App() {
-  const topDesserts = data.map((dessert) => {
-    return (
-      {
-        content: `${dessert.title} - ${dessert.description}`,
-        price: dessert.price,
-        id: dessert.id
-      }
-    )
-  })
+  // const topDesserts = data.map((dessert) => {
+  //   return {
+  //     content: `${dessert.title} - ${dessert.description}`,
+  //     price: dessert.price,
+  //     id: dessert.id,
+  //     image: dessert.image,
+  //     alt: dessert.alt,
+  //   }
+  // })
 
-  const rend = topDesserts.map(dessert => {
-    return       (
-      <div key={dessert.id}>
-        <p>{dessert.content}</p>
-        <p>{dessert.price}</p>
-      </div>
+  const rend = data.map((dessert) => {
+    return (
+      <ListItem
+        key={dessert.id}
+        title={dessert.title}
+        description={dessert.description}
+        alt={dessert.alt}
+        image={dessert.image}
+      />
     )
   })
-  console.log(topDesserts)
+  console.log(rend)
   return (
     <>
-      <div>{rend}</div>
+      <ul>{rend}</ul>
     </>
   )
 }
