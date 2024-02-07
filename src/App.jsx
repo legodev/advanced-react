@@ -52,20 +52,79 @@ function App() {
   // })
   // console.log(rend)
 
-  const data2 = ["perro", "gato", "pepito"]
+  const desserts = [
+    {
+      name: 'Chocolate Cake',
+      calories: 400,
+      createdAt: '2022-09-01',
+    },
+    {
+      name: 'Ice Cream',
+      calories: 200,
+      createdAt: '2022-01-02',
+    },
+    {
+      name: 'Tiramisu',
+      calories: 300,
+      createdAt: '2021-10-03',
+    },
+    {
+      name: 'Cheesecake',
+      calories: 600,
+      createdAt: '2022-01-04',
+    },
+  ]
 
-  const data3 = [...data2]
-  data2.push("Manzana")
-  data3.push("caballo")
-  console.log(data2)
-  console.log(data3)
+  const sorted = (a, b) => a.calories - b.calories
 
-  const popp = data2.reverse()
-  console.log(popp)
+  const newDesserts = desserts.filter((dessert) => dessert.calories <= 500)
+  newDesserts.sort(sorted)
+  const dessertItem = newDesserts.map((element) => {
+    return (
+      <ListItem
+        key={element.createdAt}
+        title={element.name}
+        calories={element.calories}
+      />
+    )
+  })
+  console.log(newDesserts)
+
+  // const data2 = ["perro", "gato", "pepito"]
+  // const compareNumbers = (a, b) => a.pos - b.pos;
+
+  // const data3 = [...data2]
+  // const data4 = [{
+  //   cosito: "Pepito",
+  //   pos: 111,
+  // },{
+  //   cosito: "Marquitos",
+  //   pos: 20,
+  // },{
+  //   cosito: "Pepito",
+  //   pos: 35,
+  // }]
+
+  // data4.sort(compareNumbers)
+
+  // const data5 = data4.filter(element => element.pos <= 200)
+  // console.log(data5)
+
+  // console.log(data4)
+
+  // data3.splice(1,2,"manzana","perritoooo")
+  // const result = data2.slice(1,3)
+  // console.log(result);
+  // console.log(result);
+  // console.log(data3);
+  // console.log(data2);
+
   return (
     <>
       {/* <ul>{rend}</ul> */}
-      <p>Hola</p>
+      <div>
+        {dessertItem}
+      </div>
     </>
   )
 }
