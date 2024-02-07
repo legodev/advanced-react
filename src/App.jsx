@@ -39,21 +39,33 @@ function App() {
   //   }
   // })
 
-  const rend = data.map((dessert) => {
-    return (
-      <ListItem
-        key={dessert.id}
-        title={dessert.title}
-        description={dessert.description}
-        alt={dessert.alt}
-        image={dessert.image}
-      />
-    )
-  })
-  console.log(rend)
+  // const rend = data.map((dessert) => {
+  //   return (
+  //     <ListItem
+  //       key={dessert.id}
+  //       title={dessert.title}
+  //       description={dessert.description}
+  //       alt={dessert.alt}
+  //       image={dessert.image}
+  //     />
+  //   )
+  // })
+  // console.log(rend)
+
+  const data2 = ["perro", "gato", "pepito"]
+
+  const data3 = [...data2]
+  data2.push("Manzana")
+  data3.push("caballo")
+  console.log(data2)
+  console.log(data3)
+
+  const popp = data2.reverse()
+  console.log(popp)
   return (
     <>
-      <ul>{rend}</ul>
+      {/* <ul>{rend}</ul> */}
+      <p>Hola</p>
     </>
   )
 }
