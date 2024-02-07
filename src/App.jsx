@@ -75,20 +75,20 @@ function App() {
     },
   ]
 
-  const sorted = (a, b) => a.calories - b.calories
+  // const sorted = (a, b) => a.calories - b.calories
 
-  const newDesserts = desserts.filter((dessert) => dessert.calories <= 500)
-  newDesserts.sort(sorted)
-  const dessertItem = newDesserts.map((element) => {
-    return (
-      <ListItem
-        key={element.createdAt}
-        title={element.name}
-        calories={element.calories}
-      />
-    )
-  })
-  console.log(newDesserts)
+  // const newDesserts = desserts.filter((dessert) => dessert.calories <= 500)
+  // newDesserts.sort(sorted)
+  // const dessertItem = newDesserts.map((element) => {
+  //   return (
+  //     <ListItem
+  //       key={element.createdAt}
+  //       title={element.name}
+  //       calories={element.calories}
+  //     />
+  //   )
+  // })
+  // console.log(newDesserts)
 
   // const data2 = ["perro", "gato", "pepito"]
   // const compareNumbers = (a, b) => a.pos - b.pos;
@@ -123,7 +123,7 @@ function App() {
     <>
       {/* <ul>{rend}</ul> */}
       <div>
-        {dessertItem}
+        <ListItem data={desserts}/>
       </div>
     </>
   )
