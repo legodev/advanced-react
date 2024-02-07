@@ -52,29 +52,47 @@ function App() {
   // })
   // console.log(rend)
 
+  // const desserts = [
+  //   {
+  //     name: 'Chocolate Cake',
+  //     calories: 400,
+  //     createdAt: '2022-09-01',
+  //   },
+  //   {
+  //     name: 'Ice Cream',
+  //     calories: 200,
+  //     createdAt: '2022-01-02',
+  //   },
+  //   {
+  //     name: 'Tiramisu',
+  //     calories: 300,
+  //     createdAt: '2021-10-03',
+  //   },
+  //   {
+  //     name: 'Cheesecake',
+  //     calories: 600,
+  //     createdAt: '2022-01-04',
+  //   },
+  // ]
+
   const desserts = [
     {
-      name: 'Chocolate Cake',
-      calories: 400,
-      createdAt: '2022-09-01',
-    },
-    {
-      name: 'Ice Cream',
-      calories: 200,
-      createdAt: '2022-01-02',
-    },
-    {
-      name: 'Tiramisu',
-      calories: 300,
-      createdAt: '2021-10-03',
-    },
-    {
-      name: 'Cheesecake',
-      calories: 600,
-      createdAt: '2022-01-04',
-    },
-  ]
+      title: 'Chocolate Cake',
+      description: 'Chocolate cake is a cake flavored with melted chocolate',
+      calories: 500,
+    }
+  ];
+  
+  const newDesserts = desserts.map((dessert) => {
+    return {
+      title: dessert.title.toUpperCase(),
+      // dessert overrides the title property in this order
+      ...dessert,
+      kCal: dessert.calories / 1000,
+    };
+  });
 
+  console.log(newDesserts)
   // const sorted = (a, b) => a.calories - b.calories
 
   // const newDesserts = desserts.filter((dessert) => dessert.calories <= 500)
@@ -123,7 +141,7 @@ function App() {
     <>
       {/* <ul>{rend}</ul> */}
       <div>
-        <ListItem data={desserts}/>
+        {/* <ListItem data={desserts}/> */}
       </div>
     </>
   )
