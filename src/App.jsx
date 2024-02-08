@@ -1,48 +1,41 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 function App() {
-  let inputRef = useRef(null)
-  // const [data,setData] = useState(null)
-  const [data2, setData2] = useState('')
-  let buttonRef = useRef(null)
-  const [dis, setDis] = useState(true)
+  const [stars, setStars] = useState('')
+
   function handleSubmit(e) {
     e.preventDefault()
-    // const inputValue = inputRef.current.value
-    // setData(inputValue)
+    console.log(stars)
+    setStars('')
+  }
 
-    setData2("")
-    // inputRef.current.value = null
-  }
   function handleChange(e) {
-    setData2(e.target.value)
+    setStars(e.target.value)
   }
+
   return (
-    <>
-      <div>
-        <form action="" onSubmit={handleSubmit}>
-          <fieldset>
-            <legend>Contact</legend>
-            <label htmlFor="name">Name: </label>
+    <div>
+      <form action="" onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Research</legend>
+          <h2>Feedback form</h2>
+          <div>
+            <label htmlFor="stars">Stars</label>
             <input
-              id='name'
-              placeholder="Your name"
-              ref={inputRef}
-              value={data2}
-              type="text"
+              width={200}
+              type="range"
+              name="stars"
+              id=""
+              value={stars}
               onChange={handleChange}
+              max={10}
             />
-            <button disabled={!data2} type="submit">
-              Submit
-            </button>
-          </fieldset>
-        </form>
-        {/* <p>{data}</p> */}
-        <p>{data2}</p>
-      </div>
-    </>
+          </div>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
   )
 }
-
 export default App
