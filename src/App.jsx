@@ -1,11 +1,24 @@
 import './App.css'
+import ThemeProvider from './components/ThemeProvider'
+import { ThemeContext, useTheme } from './hooks/useTheme'
 
 function App() {
+  function Cases() {
+    const level = useTheme(ThemeContext)
+    switch (level) {
+      case 1:
+        return <h1>Caso 1</h1>
+      case 2:
+        return <h6>Caso 2</h6>
+      default:
+        return <h2>Sin un valor válido</h2>
+    }
+  }
 
   return (
-    <div>
-      <p>Hello React</p>
-    </div>
+    <ThemeProvider value={0}>
+      <Cases></Cases>
+    </ThemeProvider>
   )
 }
 export default App
