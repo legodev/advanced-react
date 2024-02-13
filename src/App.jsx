@@ -1,25 +1,53 @@
 import './App.css'
-// import ThemeProvider from './components/ThemeProvider'
-// import { ThemeContext, useTheme } from './hooks/useTheme'
+import { useState } from 'react'
 
 function App() {
-  // function Cases() {
-  //   const level = useTheme(ThemeContext)
-  //   switch (level) {
-  //     case 1:
-  //       return <h1>Caso 1</h1>
-  //     case 2:
-  //       return <h6>Caso 2</h6>
-  //     default:
-  //       return <h2>Sin un valor válido</h2>
-  //   }
-  // }
+  const [formData, setFormData] = useState({ goal: '', by: '' })
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  // const newFormData = formData.map(({ el, index }) => {
+  //     return (
+  //       <p key={index}>
+  //         {el.goal} -- {el.by}
+  //       </p>
+  //     )
+  //   })
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    PaymentResponse.onAdd(formData)
+    setFormData({ goal: '', by: '' })
+  }
 
   return (
-    // <ThemeProvider value={0}>
-    //   <Cases></Cases>
-    // </ThemeProvider>
-    <h1>Hello React</h1>
+    <div>
+      <form action="" onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Basic Form</legend>
+          <label htmlFor="name">Name: </label>
+          <input
+            name="goal"
+            id="name"
+            type="text"
+            value={formData.goal}
+            onChange={handleChange}
+          />
+          <label htmlFor="by">By: </label>
+          <input
+            id="by"
+            name="by"
+            type="text"
+            value={formData.by}
+            onChange={handleChange}
+          />
+          <button type="submit"></button>
+        </fieldset>
+      </form>
+      {/* {NewFormData} */}
+    </div>
   )
 }
 export default App
