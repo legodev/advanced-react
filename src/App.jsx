@@ -1,52 +1,19 @@
-import './App.css'
 import { useState } from 'react'
+import './App.css'
+import GoalForm from './components/GoalForm'
 
 function App() {
-  const [formData, setFormData] = useState({ goal: '', by: '' })
+  const [allGoals, updateAllGoals] = useState([])
 
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  function addGoal(goal) {
+    updateAllGoals([...allGoals, goal])
   }
 
-  // const newFormData = formData.map(({ el, index }) => {
-  //     return (
-  //       <p key={index}>
-  //         {el.goal} -- {el.by}
-  //       </p>
-  //     )
-  //   })
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    PaymentResponse.onAdd(formData)
-    setFormData({ goal: '', by: '' })
-  }
-
+  console.log(allGoals)
+  
   return (
     <div>
-      <form action="" onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Basic Form</legend>
-          <label htmlFor="name">Name: </label>
-          <input
-            name="goal"
-            id="name"
-            type="text"
-            value={formData.goal}
-            onChange={handleChange}
-          />
-          <label htmlFor="by">By: </label>
-          <input
-            id="by"
-            name="by"
-            type="text"
-            value={formData.by}
-            onChange={handleChange}
-          />
-          <button type="submit"></button>
-        </fieldset>
-      </form>
-      {/* {NewFormData} */}
+      <GoalForm onAdd={addGoal}/>
     </div>
   )
 }
