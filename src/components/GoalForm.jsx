@@ -7,14 +7,6 @@ export default function GoalForm({ onAdd }) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  // const newFormData = formData.map(({ el, index }) => {
-  //     return (
-  //       <p key={index}>
-  //         {el.goal} -- {el.by}
-  //       </p>
-  //     )
-  //   })
-
   function handleSubmit(e) {
     e.preventDefault()
     onAdd(formData)
@@ -45,7 +37,6 @@ export default function GoalForm({ onAdd }) {
           <button type="submit">Submit</button>
         </fieldset>
       </form>
-      {/* {NewFormData} */}
     </div>
   )
 }
