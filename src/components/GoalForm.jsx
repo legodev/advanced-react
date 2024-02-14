@@ -18,7 +18,7 @@ export default function GoalForm({ onAdd }) {
       <form action="" onSubmit={handleSubmit}>
         <fieldset>
           <legend>Basic Form</legend>
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Goal: </label>
           <input
             name="goal"
             id="name"
