@@ -1,22 +1,47 @@
-import { useState } from 'react'
-import './App.css'
-import GoalForm from './components/GoalForm'
-import ListOfGoals from './components/ListOfGoals'
+import { useState } from "react";
 
-function App() {
-  const [allGoals, updateAllGoals] = useState([])
+export default function App() {
+  const [giftCard, setGiftCard] = useState(
+    {
+        firstName: "Jennifer",
+        lastName: "Smith",
+        text: "Free dinner for 4 guests",
+        valid: true,
+        instructions: "To use your coupon, click the button below.",
+    }
+  );
 
-  function addGoal(goal) {
-    updateAllGoals([...allGoals, goal])
+  function spendGiftCard(prevState) {
+    setGiftCard({
+      ...prevState,
+      text: "Your coupon has been used.",
+      valid: false,
+      instructions: "Please visit our restaurant to renew your gift card."
+    })
+
   }
 
-  console.log(allGoals)
-
   return (
-    <div>
-      <GoalForm onAdd={addGoal} />
-      <ListOfGoals data={allGoals} />
+    <div style={{padding: '40px'}}>
+      <h1>
+        Gift Card Page
+      </h1>
+      <h2>
+        Customer: {giftCard.firstName} {giftCard.lastName}
+      </h2>
+      <h3>
+        {giftCard.text}
+      </h3>
+      <p>
+        {giftCard.instructions}
+      </p>
+      {
+        giftCard.valid && (
+          <button onClick={spendGiftCard}>
+            Spend Gift Card
+          </button>
+        )
+      }
     </div>
-  )
+  );
 }
-export default App
