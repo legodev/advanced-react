@@ -1,47 +1,30 @@
-import { useState } from "react";
+// import { useEffect, useState } from 'react'
 
 export default function App() {
-  const [giftCard, setGiftCard] = useState(
-    {
-        firstName: "Jennifer",
-        lastName: "Smith",
-        text: "Free dinner for 4 guests",
-        valid: true,
-        instructions: "To use your coupon, click the button below.",
-    }
-  );
+  // const [toggle, setToggle] = useState(false)
 
-  function spendGiftCard(prevState) {
-    setGiftCard({
-      ...prevState,
-      text: "Your coupon has been used.",
-      valid: false,
-      instructions: "Please visit our restaurant to renew your gift card."
-    })
+  // const handleToggle = () => {
+  //   setToggle(!toggle)
+  // }
 
-  }
+  // useEffect(() => {
+  //   document.title = toggle ? 'Mostrando' : 'Oculto'
+  // }, [toggle])
+
+  console.log("Próximo cliente")
+
+  fetch('https://randomuser.me/api//?results=1')
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+console.log('Congratulations')
 
   return (
-    <div style={{padding: '40px'}}>
-      <h1>
-        Gift Card Page
-      </h1>
-      <h2>
-        Customer: {giftCard.firstName} {giftCard.lastName}
-      </h2>
-      <h3>
-        {giftCard.text}
-      </h3>
-      <p>
-        {giftCard.instructions}
-      </p>
-      {
-        giftCard.valid && (
-          <button onClick={spendGiftCard}>
-            Spend Gift Card
-          </button>
-        )
-      }
+    <div style={{ padding: '40px' }}>
+      {/* <button onClick={handleToggle}>
+        {toggle ? 'Hide message' : 'Show message'}
+      </button>
+      <p>{toggle && 'Que onda perri'}</p> */}
     </div>
-  );
+  )
 }
