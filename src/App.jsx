@@ -1,30 +1,32 @@
-// import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 export default function App() {
-  // const [toggle, setToggle] = useState(false)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  // const handleToggle = () => {
-  //   setToggle(!toggle)
-  // }
+  async function request() {
+    try {
+      const f = await fetch('https://randomuser.me/api//?results=1')
+      if (!f.ok) {
+        throw new Error('Falló')
+      }
+      const data = await f.json()
+      setData(data.results[0])
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  // useEffect(() => {
-  //   document.title = toggle ? 'Mostrando' : 'Oculto'
-  // }, [toggle])
-
-  console.log("Próximo cliente")
-
-  fetch('https://randomuser.me/api//?results=1')
-    .then(response => response.json())
-    .then(data => console.log(data))
-
-console.log('Congratulations')
-
+  console.log(data)
+  useEffect(() => {
+    request()
+  }, [])
   return (
     <div style={{ padding: '40px' }}>
-      {/* <button onClick={handleToggle}>
-        {toggle ? 'Hide message' : 'Show message'}
-      </button>
-      <p>{toggle && 'Que onda perri'}</p> */}
+      {loading ? <p>Data fetching</p> : `${data.gender}`}
     </div>
   )
 }
