@@ -1,44 +1,43 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React from 'react'
 
-export default function App() {
-  const [data, setData] = useState([])
-  // const [loading, setLoading] = useState(true)
+function App() {
+  const [user, setUser] = React.useState([])
 
-  async function request() {
+  const fetchData = () => {
     try {
-      const f = await fetch('https://randomuser.me/api//?results=1')
-      if (!f.ok) {
-        throw new Error('Falló')
-      }
-      const data = await f.json()
-      setData(data.results[0])
+      fetch('https://randomuser.me/api/?results=1')
+        .then((res) => res.json())
+        .then((data) => setUser(data.results[0]))
     } catch (error) {
       console.log(error)
     }
   }
 
-  const keys = Object.entries(data)
-  console.log(keys)
+  console.log(user)
 
-  const matriz = [
-    [1, 2, 3],
-    [4, [77, 11, [5], 99], 6],
-    [7, 8, 9],
-  ]
-  const five = matriz[1][1][2][0]
-  console.log(five)
-
-  console.log(data)
-  useEffect(() => {
-    request()
+  React.useEffect(() => {
+    fetchData()
   }, [])
-  return Object.keys(data).length > 0 ? (
+
+  return Object.keys(user).length > 0 ? (
     <div style={{ padding: '40px' }}>
-      {/* {loading ? <p>Data fetching</p> : `${data.gender}`} */}
-      <p>{data.gender}</p>
+      <h1>Customer data</h1>
+      <div>
+        <h2>
+          {user.name.first} {user.name.last}
+        </h2>
+        <picture>
+          <img
+            src={user.picture.large}
+            width={200}
+            alt={`${user.name.first} ${user.name.last} Image`}
+          />
+        </picture>
+      </div>
     </div>
   ) : (
-    <p>Data fetching</p>
+    <h1>Data pending...</h1>
   )
 }
+
+export default App
