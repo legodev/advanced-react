@@ -1,48 +1,66 @@
-import { useState, useEffect } from 'react'
+import "./App.css";
+import { useEffect, useState } from "react";
 
-const DataFetcher = ({ render, url }) => {
-  const [data, setData] = useState([])
+const MousePosition = ({ render }) => {
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
-    if (url.includes('desserts')) {
-      setData(['cake', 'ice cream', 'pie', 'brownie'])
-    } else {
-      setData(['water', 'soda', 'juice'])
-    }
-  }, [])
+    const handleMousePositionChange = (e) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    };
 
-  return render(data)
-}
+    window.addEventListener("mousemove", handleMousePositionChange);
 
-const DessertsCount = () => {
+    return () => {
+      window.removeEventListener("mousemove", handleMousePositionChange);
+    };
+  }, []);
+
+  return render({ mousePosition });
+};
+
+const PanelMouseLogger = () => {
   return (
-    <DataFetcher
-      url="https://littlelemon/desserts"
-      render={(data) => {
-        return <p>{data.length} desserts</p>
-      }}
+    <div className="basicTracker">
+      <p>Mouse position:</p>
+      <MousePosition
+        render={({ mousePosition }) => (
+          <div className="row">
+            <span>x: {mousePosition.x}</span>
+            <span>y: {mousePosition.y}</span>
+          </div>
+        )}
+      />
+    </div>
+  );
+};
+
+const PointMouseLogger = () => {
+  return (
+    <MousePosition
+      render={({ mousePosition }) => (
+        <p>
+          ({mousePosition.x}, {mousePosition.y})
+        </p>
+      )}
     />
-  )
+  );
+};
+
+function App() {
+  return (
+    <div className="App">
+      <header className="Header">Little Lemon Restaurant 🍕</header>
+      <PanelMouseLogger />
+      <PointMouseLogger />
+    </div>
+  );
 }
 
-const DrinksCount = () => {
-  return (
-    <DataFetcher
-    url="https://littlelemon/drinks"
-    render={(data) => {
-      return (
-        <h3>{data.length} drinks</h3>
-      )
-    }} />
-  )
-}
-
-export default function App() {
-  return (
-    <>
-      <h1>Hello React</h1>
-      <DessertsCount />
-      <DrinksCount />
-    </>
-  )
-}
+export default App;
