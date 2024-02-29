@@ -27,7 +27,7 @@ const MousePosition = ({ render }) => {
 
 const PanelMouseLogger = () => {
   return (
-    <div className="basicTracker">
+    <div className="basic__tracker">
       <p>Mouse position:</p>
       <MousePosition
         render={({ mousePosition }) => (
