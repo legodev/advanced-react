@@ -23,6 +23,14 @@ describe('fizzbuzz', () => {
     expect(fizzbuzz(20)).toBe('buzz')
   })
 
+  it('should return "buzz" if number is multiple of 7', () => {
+    expect(fizzbuzz(14)).toBe('woff')
+  })
+
+  it('should return "buzz" if number is multiple of 3 and 7', () => {
+    expect(fizzbuzz(21)).toBe('fizzwoff')
+  })
+
   it('should return "fizzbuzz" if number is multiple of 3 and 5', () => {
     expect(fizzbuzz(15)).toBe('fizzbuzz')
   })
