@@ -13,6 +13,5 @@ export const fizzbuzz = (number) => {
   .forEach(([multiplier, word]) => {
     if (number % multiplier === 0) output += word
   })
-
   return output === '' ? number : output
 }
