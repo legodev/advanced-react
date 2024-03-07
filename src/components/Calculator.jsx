@@ -12,6 +12,7 @@ const rows = [
 
 export const operations = ['+', '-', '*', '/']
 export const equalSign = '='
+export const reset = 'AC'
 
 
 
@@ -36,6 +37,7 @@ export const Calculator = () => {
           <button onClick={createHandleClick(operation)} key={operation}>{operation}</button>
         ))}
         <button onClick={()=>setValue(evaluate(value))}>{equalSign}</button>
+        <button onClick={()=>setValue('')}>{reset}</button>
       </div>
     </section>
   )
