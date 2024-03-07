@@ -1,46 +1,8 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { useState } from 'react'
 import { afterEach, describe, it, expect } from 'vitest'
-
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-const rows = [
-  [7, 8, 9],
-  [4, 5, 6],
-  [1, 2, 3],
-  [0]
-]
-
-const operations = ['+', '-', '*', '/']
-const equalSign = '='
+import { Calculator, numbers, operations } from '@components/Calculator'
 
 
-
-const Calculator = () => {
-  const [value, setValue] = useState('')
-
-  const createHandleClick = (op) => () => setValue(value.concat(op))
-
-  return (
-    <section>
-      <h1>Calculator</h1>
-      <input value={value} readOnly/>
-      <div role="grid">
-        {rows.map((row, idx) => (
-          <div role='row' key={idx}>
-            {row.map((number) => (
-              <button onClick={createHandleClick(number)} key={number}>{number}</button>
-            ))}
-          </div>
-        ))}
-        {operations.map(operation => (
-          <button onClick={createHandleClick(operation)} key={operation}>{operation}</button>
-        ))}
-        <button>{equalSign}</button>
-      </div>
-    </section>
-  )
-}
 
 describe('Calculator', () => {
   afterEach(cleanup)
