@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  test : {
+    environment: 'happy-dom',
+    globals: true,
+  },
   resolve: {
     alias: {
-      '@assets': '/src/assets',
-      '@components': '/src/components',
+      '@src': '/src',
+      '@components': '/src/components'
     }
   }
-  
 })
